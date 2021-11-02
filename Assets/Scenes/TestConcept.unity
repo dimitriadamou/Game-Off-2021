@@ -3682,9 +3682,9 @@ GameObject:
   - component: {fileID: 1840214549}
   - component: {fileID: 1840214548}
   - component: {fileID: 1840214546}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3755,7 +3755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1881329369}
   - component: {fileID: 1881329370}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
