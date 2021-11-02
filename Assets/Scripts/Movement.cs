@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody rigidBody;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -16,13 +17,13 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.UpArrow)) {
             rigidBody.MovePosition(
-                transform.position + (Vector3.up * Time.deltaTime * 25)
+                transform.position + (Vector3.up * Time.deltaTime * 10)
             );
         }
 
         if(Input.GetKey(KeyCode.DownArrow)) {
             rigidBody.MovePosition(
-                transform.position - (Vector3.up * Time.deltaTime * 25)
+                transform.position - (Vector3.up * Time.deltaTime * 10)
             );
         }
     }

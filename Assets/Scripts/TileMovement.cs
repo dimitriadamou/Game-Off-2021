@@ -8,8 +8,12 @@ public class TileMovement : MonoBehaviour
 
     Vector3 originalPosition;
     Vector3 targetPosition;
+
+    int playerMask = 0;
+    int playerTag = 0;
     void Start()
     {
+        playerMask = LayerMask.GetMask("Player Object");
         targetPosition = originalPosition = transform.localPosition;
         transform.localPosition = new Vector3(
             transform.localPosition.x,
@@ -35,15 +39,18 @@ public class TileMovement : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+
+        if ( other.tag == "Player" ) {
         targetPosition = originalPosition;
-        Debug.Log("OnTriggerEnter");
+        }
     }
 
 
     private void OnTriggerExit(Collider other) {
-        targetPosition = transform.localPosition;
-        targetPosition.z = 20;
-        Debug.Log("OnTriggerExit");
+        if( other.tag == "Player" ) {
+            targetPosition = transform.localPosition;
+            targetPosition.z = 20;
+        }
     }
 
 }
