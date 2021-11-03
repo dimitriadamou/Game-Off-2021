@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8196772718571615544}
   - component: {fileID: 8196772718571615551}
-  - component: {fileID: 4972218454056336062}
-  - component: {fileID: 5022180475813809645}
-  - component: {fileID: 7177369939525632184}
+  - component: {fileID: 9128767494394524803}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -86,36 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!54 &4972218454056336062
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8196772718571615545}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &5022180475813809645
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8196772718571615545}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7177369939525632184
+--- !u!114 &9128767494394524803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,3 +96,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c30ab2ee8536401da989c57f8bf3d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLocation: {fileID: 11400000, guid: 9b5b49e7fee374d06899a355a3e4f19c, type: 2}
