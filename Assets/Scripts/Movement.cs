@@ -25,19 +25,18 @@ public class Movement : MonoBehaviour
     void Update()
     {
 
-        
         if(!isMoving && Input.GetKey(KeyCode.UpArrow)) {
             animator.SetBool("IsMoving", true);
             isMoving = true;
             jumpTime = 0f;
 
             jumpPosition = this.transform.position;
-            destination = this.transform.position + (Vector3.up * 2);
+            destination = this.transform.position + (Vector3.up * 3);
         } 
 
 
         if(isMoving) {
-            jumpTime += Time.deltaTime;
+            jumpTime += Time.deltaTime * 5;
             rigidBody.MovePosition(
                 Vector3.Lerp(
                     jumpPosition,
@@ -46,7 +45,7 @@ public class Movement : MonoBehaviour
                 )
             );
 
-            if(jumpTime > 0.75) {
+            if(jumpTime > 0.6) {
                 animator.SetBool("IsMoving", false);
             }
 
