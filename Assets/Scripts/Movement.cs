@@ -6,30 +6,54 @@ public class Movement : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] SharedVector3 playerLocation;
-    [SerializeField] Camera activeCamera;
+    [SerializeField] Animator animator;
     Rigidbody rigidBody;
+
+    private bool isMoving = false;
+    private Vector3 destination;
+    private Vector3 jumpPosition;
+    private float jumpTime = 0f;
 
     void Start()
     {
+        destination = Vector3.zero;
         rigidBody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         
-        if(Input.GetKey(KeyCode.UpArrow)) {
-            rigidBody.MovePosition(
-                transform.position + (Vector3.up * Time.deltaTime)
-            );
-        }
+        if(!isMoving && Input.GetKey(KeyCode.UpArrow)) {
+            animator.SetBool("IsMoving", true);
+            isMoving = true;
+            jumpTime = 0f;
 
-        if(Input.GetKey(KeyCode.DownArrow)) {
-            rigidBody.MovePosition(
-                transform.position - (Vector3.up * Time.deltaTime)
-            );
-        }
+            jumpPosition = this.transform.position;
+            destination = this.transform.position + (Vector3.up * 2);
+        } 
 
+
+        if(isMoving) {
+            jumpTime += Time.deltaTime;
+            rigidBody.MovePosition(
+                Vector3.Lerp(
+                    jumpPosition,
+                    destination,
+                    jumpTime
+                )
+            );
+
+            if(jumpTime > 0.75) {
+                animator.SetBool("IsMoving", false);
+            }
+
+            if(jumpTime >= 1f) {
+                isMoving = false;
+            }
+        }
         playerLocation.Value = this.transform.position;
     }
 }

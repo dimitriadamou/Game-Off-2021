@@ -6,16 +6,15 @@ public class TileMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] SharedVector3 playerLocation;
-
+    [SerializeField] List<SpriteRenderer> spriteRenderer;
     Vector3 originalPosition;
     Vector3 originalPositionNoZ;
     Vector3 targetPosition;
 
-    int playerMask = 0;
-    int playerTag = 0;
+    private float alpha = 0f;
+    private float lastAlpha = 0f;
     void Start()
     {
-        playerMask = LayerMask.GetMask("Player Object");
         targetPosition = originalPosition = transform.localPosition;
         transform.localPosition = new Vector3(
             transform.localPosition.x,
@@ -27,10 +26,16 @@ public class TileMovement : MonoBehaviour
             transform.localPosition.x,
             transform.localPosition.y            
         );
-    }
 
-    // Update is called once per frame
-    private float deltaTime;
+        foreach(var item in spriteRenderer) {
+            item.color = new Color(
+                item.color.r,
+                item.color.g,
+                item.color.b,
+                0f                
+            );
+        }
+    }
     void Update()
     {
 
@@ -52,9 +57,33 @@ public class TileMovement : MonoBehaviour
                     originalPosition.y
                 )                        
             ),
-            0,
-            15
+            15,
+            25
         );
+
+        alpha = Mathf.Lerp(
+            0f,
+            yPos < 0 ? 1f : 1f,
+            yPos < 0 ? 1f - ((distance - 15f) / 10f) : 1f
+        );
+
+
+        if(!Mathf.Approximately(
+            alpha, lastAlpha
+        )) {
+            foreach (var item in spriteRenderer)
+            {
+                item.color = new Color(
+                    item.color.r,
+                    item.color.g,
+                    item.color.b,
+                    alpha
+                );
+            }
+
+            lastAlpha = alpha;
+
+        }
 
         transform.localPosition = new Vector3(
             transform.localPosition.x,
@@ -62,26 +91,10 @@ public class TileMovement : MonoBehaviour
             Mathf.Lerp(
                 originalPosition.z,
                 yPos < 0 ? -10f : 30f,
-                yPos < 0 ? ( (distance - 10) / 10)  : ( (distance - 5) / 5)
+                yPos < 0 ? (distance - 15f) / 10f : 0
             )
-        );    
-    }
-
-    private void OnTriggerEnter(Collider other) {
-
-        if ( other.tag == "Player" ) {
-        //targetPosition = originalPosition;
-        }
-    }
-
-
-    private void OnTriggerExit(Collider other) {
-        /*
-        if( other.tag == "Player" ) {
-            targetPosition = transform.localPosition;
-            targetPosition.z = 20;
-        }
-        */
+        );
+        
     }
 
 }
