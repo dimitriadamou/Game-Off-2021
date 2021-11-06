@@ -6,4 +6,6 @@ using UnityEngine;
 public class Route : ScriptableObject {
     public List<Vector3> Routes;
     public List<float> RouteRate;
+
+    public bool SpawnFromRight = true;
 }

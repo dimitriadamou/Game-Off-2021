@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4b3fbfbf324422999cf57f782cda25, type: 3}
+  m_Name: GrassBiome
+  m_EditorClassIdentifier: 
+  Name: Plain Grass Field
+  groundTile: {fileID: 4026213351939354673, guid: 2c9c54cae373a41889b6588745419bd0, type: 3}
+  obstacleData:
+  - {fileID: 11400000, guid: 9c0225e955fa447818653b4b76415e5b, type: 2}
+  waterTile: {fileID: 0}
+  minUnits: 300
+  maxUnits: 400

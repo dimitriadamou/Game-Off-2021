@@ -6,6 +6,7 @@ public class NPCBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
     public Route CurrentRoute;
+    public Rigidbody rigidBody;
 
     public SpriteRenderer spriteRenderer;
 
@@ -19,6 +20,7 @@ public class NPCBehaviour : MonoBehaviour
     void Start()
     {
         originalPosition = transform.position;
+        rigidBody = GetComponent<Rigidbody>();
 
         Vector3 currentPosition = transform.position;
         currentPosition.y = 0;
@@ -67,7 +69,7 @@ public class NPCBehaviour : MonoBehaviour
             time += deltaTime * CurrentRoute.RouteRate[routeIndex];
 
             //start position.
-            transform.position = new Vector3(
+            rigidBody.MovePosition(new Vector3(
                 Mathf.LerpUnclamped(
                     startPosition.x,
                     endPosition.x,
@@ -79,7 +81,7 @@ public class NPCBehaviour : MonoBehaviour
                     endPosition.z,
                     time
                 )
-            );
+            ));
         } else {
             time -= 1f;
             routeIndex++;

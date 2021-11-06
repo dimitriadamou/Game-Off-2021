@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acfe2e74914404716848f07f0fcb63b6, type: 3}
-  m_Name: Left-Right
+  m_Script: {fileID: 11500000, guid: f65a32ad58118405ab50f661fa526783, type: 3}
+  m_Name: DryTree
   m_EditorClassIdentifier: 
-  Routes:
-  - {x: 11, y: 0, z: -2}
-  - {x: -12, y: 0, z: -2}
-  RouteRate:
-  - 1
-  - 1
+  obstaclePrefab: {fileID: 1874820369229141229, guid: 14eca3efdfa3d4f06a8b126d5d86dd51, type: 3}
+  frequency: 0.2
+  slots: 1
