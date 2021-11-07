@@ -13,9 +13,19 @@ MonoBehaviour:
   m_Name: GrassBiome
   m_EditorClassIdentifier: 
   Name: Plain Grass Field
+  prefabSpawner:
+  - {fileID: 3236740455620226958, guid: ae6e5a984c3f14ea88478db297eecabd, type: 3}
   groundTile: {fileID: 4026213351939354673, guid: 2c9c54cae373a41889b6588745419bd0, type: 3}
   obstacleData:
   - {fileID: 11400000, guid: 9c0225e955fa447818653b4b76415e5b, type: 2}
   waterTile: []
+  spawners:
+  - {fileID: 11400000, guid: 901eab7a88b6d4d8bb878852a6479376, type: 2}
+  - {fileID: 11400000, guid: 03b7532bf984e47469a0080e7a7d75f0, type: 2}
+  - {fileID: 11400000, guid: 8bc371af6c0a84ccfa09fa1dad8315c4, type: 2}
+  enemies:
+  - {fileID: 11400000, guid: 79035075054f143b3ab41390c207aa87, type: 2}
+  spawnMinY: 6
+  spawnMaxY: 12
   minUnits: 300
   maxUnits: 400

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] List<NPCBehaviour> NPCPrefabs;
-    [SerializeField] float Count = 1f;
-    [SerializeField] float SpacingUnits = 0f;
-    [SerializeField] List<Route> NPCPath;
+    [SerializeField] public List<NPCBehaviour> NPCPrefabs;
+    [SerializeField] public float Count = 1f;
+    [SerializeField] public float SpacingUnits = 0f;
+    [SerializeField] public List<Route> NPCPath;
     [SerializeField] SharedVector3 playerLocation;
 
     private List<NPCBehaviour> myNPCs;
@@ -67,7 +67,7 @@ public class EnemyController : MonoBehaviour
 
             npc.transform.localPosition = new Vector3(
                 i * SpacingUnits,
-                transform.position.y,
+                0f,
                 0f
             );
 
