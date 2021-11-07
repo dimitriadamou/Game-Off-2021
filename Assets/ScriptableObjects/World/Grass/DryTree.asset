@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DryTree
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 1874820369229141229, guid: 14eca3efdfa3d4f06a8b126d5d86dd51, type: 3}
-  frequency: 0.2
+  frequency: 0.05
   slots: 1
