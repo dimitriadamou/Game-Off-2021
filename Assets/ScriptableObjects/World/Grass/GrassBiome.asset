@@ -16,6 +16,6 @@ MonoBehaviour:
   groundTile: {fileID: 4026213351939354673, guid: 2c9c54cae373a41889b6588745419bd0, type: 3}
   obstacleData:
   - {fileID: 11400000, guid: 9c0225e955fa447818653b4b76415e5b, type: 2}
-  waterTile: {fileID: 0}
+  waterTile: []
   minUnits: 300
   maxUnits: 400

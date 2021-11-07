@@ -8,6 +8,7 @@ public class TileMovement : MonoBehaviour
     [SerializeField] SharedVector3 playerLocation;
     [SerializeField] List<SpriteRenderer> spriteRenderer;
     Vector3 originalPosition;
+    Vector3 worldPosition;
     Vector3 originalPositionNoZ;
     Vector3 targetPosition;
 
@@ -16,6 +17,7 @@ public class TileMovement : MonoBehaviour
     void Start()
     {
         targetPosition = originalPosition = transform.localPosition;
+        worldPosition = transform.position;
         transform.localPosition = new Vector3(
             transform.localPosition.x,
             transform.localPosition.y,
@@ -44,7 +46,7 @@ public class TileMovement : MonoBehaviour
             playerLocation.Value.y
         );
 
-        var yPos = playerVec.y - originalPositionNoZ.y;
+        var yPos = playerVec.y - worldPosition.y;
 
         var distance = Mathf.Clamp(
             Vector3.Distance(
@@ -53,8 +55,8 @@ public class TileMovement : MonoBehaviour
                     playerLocation.Value.y
                 ),
                 new Vector3(
-                    originalPosition.x,
-                    originalPosition.y
+                    worldPosition.x,
+                    worldPosition.y
                 )                        
             ),
             15,
