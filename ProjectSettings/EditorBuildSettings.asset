@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/WorldGenerationTest.unity
+    path: Assets/Scenes/Stage_01.unity
     guid: a265b79e4c0244bdc8c9709a4a046f8d
   - enabled: 1
     path: Assets/Scenes/TestConcept.unity

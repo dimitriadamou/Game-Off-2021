@@ -7,6 +7,8 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] SharedVector3 playerLocation;
     [SerializeField] Animator animator;
+
+    [SerializeField] EventSubscribe onFallEvent;
     Rigidbody rigidBody;
 
     private bool isMoving = false;
@@ -15,13 +17,44 @@ public class Movement : MonoBehaviour
     private Vector3 jumpPosition;
     private float jumpTime = 0f;
 
+    private bool canMove = true;
     void Start()
     {
         destination = Vector3.zero;
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        playerLocation.Value = this.transform.position;
     }
 
+    private void OnEnable() {
+        onFallEvent.Callback += OnFall;
+    }
+
+    private void OnDisable() {
+        onFallEvent.Callback -= OnFall;        
+    }
+
+    private void OnFall()
+    {
+        animator.Play("Fall");
+        animator.SetBool("IsFalling", true);
+        animator.SetBool("IsMoving", false);
+        animator.SetBool("IsInjured", false);
+        isMoving = false;
+        isInjured = false;
+        canMove = false;
+
+    }
+
+    private void OnFallDone()
+    {
+        animator.SetBool("IsFalling", false);
+        destination -= (Vector3.up * 9);
+        rigidBody.MovePosition(destination);
+        isMoving = false;
+        canMove = true;
+        isInjured = false;
+    }
 
     private void OnCollisionEnter(Collision other) {
         if ( other.gameObject.tag == "Enemey" ) {
@@ -45,7 +78,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
 
-        if(!isMoving && Input.GetKey(KeyCode.UpArrow)) {
+        if(canMove && !isMoving && Input.GetKey(KeyCode.UpArrow)) {
             animator.SetBool("IsMoving", true);
             isMoving = true;
             jumpTime = 0f;
@@ -55,7 +88,7 @@ public class Movement : MonoBehaviour
         } 
 
 
-        if(isMoving) {
+        if(canMove && isMoving) {
             jumpTime += Time.deltaTime * 5;
             rigidBody.MovePosition(
                 Vector3.Lerp(
