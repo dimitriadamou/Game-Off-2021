@@ -40,9 +40,30 @@ public class InteractableTile : MonoBehaviour
     
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(
-            this.transform.position,
-            this.transform.localScale
+        Gizmos.DrawLine(
+            this.transform.position - new Vector3(
+                this.transform.localScale.x / 2,
+                -this.transform.localScale.y / 2,
+                0f
+            ),            
+            this.transform.position + new Vector3(
+                this.transform.localScale.x / 2,
+                this.transform.localScale.y / 2,
+                0f
+            )            
+        );
+
+        Gizmos.DrawLine(
+            this.transform.position - new Vector3(
+                this.transform.localScale.x / 2,
+                this.transform.localScale.y / 2,
+                0f
+            ),            
+            this.transform.position + new Vector3(
+                this.transform.localScale.x / 2,
+                -this.transform.localScale.y / 2,
+                0f
+            )            
         );
     }
 

@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] SharedVector3 playerLocation;
+    [SerializeField] GameObject ghost;
     [SerializeField] Animator animator;
 
     [SerializeField] EventSubscribe onFallEvent;
@@ -81,17 +82,29 @@ public class Movement : MonoBehaviour
         }
     }
     // Update is called once per frame
+
+    private void Move(Vector3 position)
+    {
+        rigidBody.MovePosition(position);
+        if(ghost) {
+            this.ghost.transform.position = new Vector3(
+                0f,
+                position.y,
+                0f
+            );
+        }
+    }
     void Update()
     {
         if(forcedMove) {
             forcedMoveTime += Time.deltaTime;
-            rigidBody.MovePosition(
+            Move(
                 Vector3.Lerp(
                     jumpPosition,
                     destination,
                     forcedMoveTime / forcedMoveDestTime
                 )
-            );            
+            );   
 
             if(forcedMoveTime >= forcedMoveDestTime) {
                 forcedMove = false;
@@ -106,12 +119,32 @@ public class Movement : MonoBehaviour
 
             jumpPosition = this.transform.position;
             destination = this.transform.position + (Vector3.up * 3);
+            destination.x = 0f;
         } 
 
+        if(canMove && !isMoving && Input.GetKey(KeyCode.LeftArrow)) {
+            animator.SetBool("IsMoving", true);
+            isMoving = true;
+            jumpTime = 0f;
+
+            jumpPosition = this.transform.position;
+            destination = this.transform.position + (Vector3.up * 3);
+            destination.x = -6f;
+        }         
+
+        if(canMove && !isMoving && Input.GetKey(KeyCode.RightArrow)) {
+            animator.SetBool("IsMoving", true);
+            isMoving = true;
+            jumpTime = 0f;
+
+            jumpPosition = this.transform.position;
+            destination = this.transform.position + (Vector3.up * 3);
+            destination.x = 6f;
+        }         
 
         if(canMove && isMoving) {
             jumpTime += Time.deltaTime * 5;
-            rigidBody.MovePosition(
+            Move(
                 Vector3.Lerp(
                     jumpPosition,
                     destination,
