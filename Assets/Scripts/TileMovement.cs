@@ -30,6 +30,8 @@ public class TileMovement : MonoBehaviour
         );
 
         foreach(var item in spriteRenderer) {
+            item.material.SetFloat("Alpha",0f);
+
             item.color = new Color(
                 item.color.r,
                 item.color.g,
@@ -75,6 +77,7 @@ public class TileMovement : MonoBehaviour
         )) {
             foreach (var item in spriteRenderer)
             {
+                item.material.SetFloat("Alpha",alpha);
                 item.color = new Color(
                     item.color.r,
                     item.color.g,
