@@ -11,6 +11,9 @@ public class Movement : MonoBehaviour
     [SerializeField] EventSubscribe onFallEvent;
     Rigidbody rigidBody;
 
+    private bool forcedMove = false;
+    private float forcedMoveTime = 0f;
+    private float forcedMoveDestTime = 1f;
     private bool isMoving = false;
     private bool isInjured = false;
     private Vector3 destination;
@@ -49,8 +52,11 @@ public class Movement : MonoBehaviour
     private void OnFallDone()
     {
         animator.SetBool("IsFalling", false);
+        jumpPosition = this.transform.position;
         destination -= (Vector3.up * 9);
-        rigidBody.MovePosition(destination);
+        forcedMove = true;
+        forcedMoveTime = 0f;
+        forcedMoveDestTime = 0.5f;
         isMoving = false;
         canMove = true;
         isInjured = false;
@@ -77,6 +83,21 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(forcedMove) {
+            forcedMoveTime += Time.deltaTime;
+            rigidBody.MovePosition(
+                Vector3.Lerp(
+                    jumpPosition,
+                    destination,
+                    forcedMoveTime / forcedMoveDestTime
+                )
+            );            
+
+            if(forcedMoveTime >= forcedMoveDestTime) {
+                forcedMove = false;
+                forcedMoveTime = 0f;
+            }
+        }
 
         if(canMove && !isMoving && Input.GetKey(KeyCode.UpArrow)) {
             animator.SetBool("IsMoving", true);
